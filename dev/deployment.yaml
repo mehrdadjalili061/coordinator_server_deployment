@@ -18,7 +18,7 @@ spec:
         - name: facegram-registery
       containers:
         - name: coordinator-api-server
-          image: ""
+          image: cr.fcgm.dev/facegram/coordinator-service:61a6cac3
           ports:
             - containerPort: 30008
           env:
