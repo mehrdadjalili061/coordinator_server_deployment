@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: coordinator-api-server
+  labels:
+    app: coordinator-api-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: coordinator-api-server
+  template:
+    metadata:
+      labels:
+        app: coordinator-api-server
+    spec:
+      imagePullSecrets:
+        - name: facegram-registery
+      containers:
+        - name: coordinator-api-server
+          image: ""
+          ports:
+            - containerPort: 30008
+          env:
+            - name: NODE_ENV
+              value: "dev"   
+          envFrom:
+            - secretRef:
+                name: grpc-client-configs
+            - secretRef:
+                name: sentry-credential
+            - secretRef:
+                name: mongodb-credential
